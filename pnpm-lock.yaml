@@ -20,6 +20,9 @@ dependencies:
   echarts:
     specifier: ^5.4.3
     version: 5.4.3
+  lodash:
+    specifier: ^4.17.21
+    version: 4.17.21
 
 devDependencies:
   '@types/react':

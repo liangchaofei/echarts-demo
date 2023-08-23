@@ -15,7 +15,8 @@
     "@ant-design/pro-components": "^2.6.13",
     "@umijs/max": "^4.0.76",
     "antd": "^5.8.4",
-    "echarts": "^5.4.3"
+    "echarts": "^5.4.3",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@types/react": "^18.2.20",

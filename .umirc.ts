@@ -59,6 +59,16 @@ export default defineConfig({
       path: '/pattern',
       component: './Pattern',
     },
+    {
+      name: 'x轴间距测试',
+      path: '/x',
+      component: './Test',
+    },
+    {
+      name: '多视图联动',
+      path: '/more',
+      component: './More',
+    },
   ],
   npmClient: 'pnpm',
 });

@@ -6,38 +6,61 @@ function App() {
   const data = [150, 230, 224, 218, 135, 147, 260];
   const options = {
     xAxis: {
-      type: 'category',
-      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+      id: 'xAxis',
+      type: 'value',
+      boundaryGap: false,
+      min: 0, // 设置 x 轴的最小值
+    max: 10, // 设置 x 轴的最大值
+      // data: [1,2,3,4,5,6,7]
     },
     yAxis: {
-      type: 'value'
+      type: 'value',
+      data
     },
+    dataZoom: [
+      {
+        type: 'inside',
+        xAxisIndex: 0,
+        filterMode: 'none'
+      },
+      {
+        type: 'inside',
+        yAxisIndex: 0,
+        filterMode: 'none'
+      }
+    ],
     series: [
       {
-        data,
+        data: [[1, 150], [3, 230], [5, 224], [7, 218], [9, 135]],
+        smooth: true,
         type: 'line'
       }
     ],
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'line'
+      }
+    },
     graphic: {
         elements: [
           {
             type: 'group',
             left: '300px',
-            draggable: 'horizontal',
+            // draggable: 'horizontal',
+            draggable: true,
+            invisible: true,
+           
             ondrag: function (params) {
+              console.log('params', params)
               var pointInPixel = [params.offsetX, params.offsetY];
               var pointInGrid = chart.convertFromPixel('grid', pointInPixel);
-
-              var xTime = new Date(pointInGrid[0])
-              console.log(xTime);
-              //get closest value from cursor
-              var point = data.reduce((prev, curr) => Math.abs(new Date(curr[0]).valueOf() - xTime.valueOf()) < Math.abs(new Date(prev[0]).valueOf() - xTime.valueOf()) ? curr : prev)
-
-              //console.log('poi', new Date(pointInGrid[0]), new Date(point[0]), point[1])
-
-              var d = document.getElementById('value1');
-              d.style.left = params.offsetX + 'px';
-              d.innerHTML = params.offsetX
+              // var pointInXAxis = chart.convertFromPixel({ xAxisId: 'xAxis' }, params.offsetX);
+              console.log('pointInGrid', pointInGrid)
+             
+              // var d = document.getElementById('value1');
+              // d.style.left = params.offsetX + 'px';
+              // d.innerHTML = params.offsetX
             },
             children: [
               {
@@ -66,6 +89,13 @@ function App() {
     }
     chart.setOption(options);
   }, [options]);
+
+  
+  
+  
+  
+  
+  
 
   return (
     <div className="App">
