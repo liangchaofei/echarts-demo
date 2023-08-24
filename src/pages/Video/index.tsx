@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import * as echarts from "echarts";
+import { Button } from 'antd';
 import './index.less'
 
 function App() {
@@ -70,6 +71,8 @@ for (let i = 0; i < 1000; i++) {
   };
   const chartRef = useRef<HTMLDivElement>(null);
   let chart: echarts.ECharts | null = null;
+
+  const timerRef = useRef(null);
   
   useEffect(() => {
     if (!chart) {
@@ -77,7 +80,7 @@ for (let i = 0; i < 1000; i++) {
     }
 
     chart.setOption(options);
-    setInterval(function () {
+    timerRef.current = setInterval(function () {
         for (let i = 0; i < 5; i++) {
           data.shift();
           data.push(randomData());
@@ -92,9 +95,15 @@ for (let i = 0; i < 1000; i++) {
       }, 1000);
   }, [options]);
 
+  const handleClick = () => {
+    timerRef.current = null;
+    window.clearInterval(timerRef.current)
+  }
+
   return (
     <div className="App">
       <h1>React Echarts Demo</h1>
+      <Button onClick={handleClick}>按钮</Button>
       <div
         ref={chartRef}
         className="chart"

@@ -69,6 +69,11 @@ export default defineConfig({
       path: '/more',
       component: './More',
     },
+    {
+      name: '综合',
+      path: '/all',
+      component: './All',
+    },
   ],
   npmClient: 'pnpm',
 });
