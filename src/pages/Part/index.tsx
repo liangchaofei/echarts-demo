@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import * as echarts from "echarts";
+import { Button } from 'antd';
 import "./index.less";
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
     toolbox: {
       feature: {
         dataZoom: {
-          show: true
+          show: true,
         }
       }
     }
@@ -51,9 +52,26 @@ function App() {
     chart.setOption(options);
   }, [options]);
 
+  const handleClick = () => {
+    // 点击按钮 模拟  点击区域缩放按钮     
+    console.log('chart', chart)   
+    console.log('www', chart.getModel())
+    let dataZoomComponent = chart.getModel().getComponent('dataZoom', 0);
+    console.log('dataZoomComponent', dataZoomComponent)
+    // 切换到区域缩放模式
+    dataZoomComponent.option.zoomLock = false;
+    // 手动开启区域缩放
+    chart.dispatchAction({
+        type: 'takeGlobalCursor',
+        key: 'dataZoomSelect',
+        dataZoomSelectActive: true
+    });
+  }
+
   return (
     <div className="App">
       <h1>React Echarts Demo</h1>
+      <Button onClick={handleClick}>局部放大</Button>
       <div
         ref={chartRef}
         className="chart"

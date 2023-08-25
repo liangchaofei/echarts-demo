@@ -9,7 +9,7 @@ function App() {
     const [scale,setScale] = useState(false); // 缩小放大
     const [part, setPart] = useState(false); // 局部放大
 
-    const [play, setPlay] = useState(false); // 播放
+    const [play, setPlay] = useState(true); // 播放
     let data = [[1, 116], [2, 129], [3, 135], [4, 86], [5, 73], [6, 85], [7, 73], [8, 68], [9, 92], [10, 130], [11, 245], [12, 139], [13, 115], [14, 111], [15, 309], [16, 206], [17, 137], [18, 128], [19, 85], [20, 94], [21, 71], [22, 106], [23, 84], [24, 93], [25, 85], [26, 73], [27, 83], [28, 125], [29, 107], [30, 82], [31, 44], [32, 72], [33, 106], [34, 107], [35, 66], [36, 91], [37, 92], [38, 113], [39, 107], [40, 131], [41, 111], [42, 64], [43, 69], [44, 88], [45, 77], [46, 83], [47, 111], [48, 57], [49, 55], [50, 60]];
     let newData:any = []; // 在函数顶部定义一个空数组
     const dateList = data.map(function (item) {
@@ -38,52 +38,60 @@ function App() {
     ],
     title: [],
     toolbox: {
-      // show: true,
       feature: {
-        myTool: {
-          show: true,
-          title: 'a',
-          icon: 'path://M85.333333 896h853.333334v42.666667H85.333333z,M85.333333 85.333333h42.666667v853.333334H85.333333zM575.317333 650.325333l-187.946666-177.28-168.064 163.413334-29.781334-30.592 197.376-191.914667 188.757334 178.048 321.152-295.168 28.885333 31.402667z',//可以复制阿里矢量图标的svg代码，path多个值用“，”隔开
-                onclick: function () {
-                  console.log('aa')
-                }
-
-        },
         dataZoom: {
-
           show: true,
-          // 数据区域缩放。目前只支持直角坐标系的缩放。
-          // yAxisIndex: "none",
-          // brushStyle: {
-          //   borderColor: "#D82E73",
-          //   borderWidth: 2,
-          //   borderType: "dashed"
-          // },
-          // // 缩放和还原的 icon path
-          icon: {
-            back: 'as.png'
-          }
-        },
-        // 数据视图工具，可以展现当前图表所用的数据，编辑后可以动态更新
-        dataView: {
-          show: false,
-          readOnly: false
-        },
-        // 动态类型切换
-        magicType: { type: ["line", "bar"] },
-        // 配置项还原
-        restore: {
-          // icon: '' // 可以通过 'image://url' 设置为图片，其中 URL 为图片的链接，或者 dataURI
-          // 如：path://M8.60776 2.67114H1.39224C1.17581 2.67114 1.05497 2.89965 1.189 3.05565L4.79676 7.23907C4.90003 7.35882 5.09887 7.35882 5.20324 7.23907L8.811 3.05565C8.94503 2.89965 8.82418 2.67114 8.60776 2.67114Z
-        },
-        // 保存为图片
-        saveAsImage: {
-          type: "png", // 保存的图片格式
-          name: "name", // 保存的文件名称
-          excludeComponent: ["toolbox"] // 保存为图片时忽略的组件列表，默认忽略工具栏
+          // icon: 'a.png'
         }
       }
     },
+    // toolbox: {
+    //   // show: true,
+    //   feature: {
+    //     myTool: {
+    //       show: true,
+    //       title: 'a',
+    //       icon: 'path://M85.333333 896h853.333334v42.666667H85.333333z,M85.333333 85.333333h42.666667v853.333334H85.333333zM575.317333 650.325333l-187.946666-177.28-168.064 163.413334-29.781334-30.592 197.376-191.914667 188.757334 178.048 321.152-295.168 28.885333 31.402667z',//可以复制阿里矢量图标的svg代码，path多个值用“，”隔开
+    //             onclick: function () {
+    //               console.log('aa')
+    //             }
+
+    //     },
+    //     dataZoom: {
+
+    //       show: true,
+    //       // 数据区域缩放。目前只支持直角坐标系的缩放。
+    //       // yAxisIndex: "none",
+    //       // brushStyle: {
+    //       //   borderColor: "#D82E73",
+    //       //   borderWidth: 2,
+    //       //   borderType: "dashed"
+    //       // },
+    //       // // 缩放和还原的 icon path
+    //       // icon: {
+    //       //   back: 'as.png'
+    //       // }
+    //     },
+    //     // 数据视图工具，可以展现当前图表所用的数据，编辑后可以动态更新
+    //     dataView: {
+    //       show: false,
+    //       readOnly: false
+    //     },
+    //     // 动态类型切换
+    //     magicType: { type: ["line", "bar"] },
+    //     // 配置项还原
+    //     restore: {
+    //       // icon: '' // 可以通过 'image://url' 设置为图片，其中 URL 为图片的链接，或者 dataURI
+    //       // 如：path://M8.60776 2.67114H1.39224C1.17581 2.67114 1.05497 2.89965 1.189 3.05565L4.79676 7.23907C4.90003 7.35882 5.09887 7.35882 5.20324 7.23907L8.811 3.05565C8.94503 2.89965 8.82418 2.67114 8.60776 2.67114Z
+    //     },
+    //     // 保存为图片
+    //     saveAsImage: {
+    //       type: "png", // 保存的图片格式
+    //       name: "name", // 保存的文件名称
+    //       excludeComponent: ["toolbox"] // 保存为图片时忽略的组件列表，默认忽略工具栏
+    //     }
+    //   }
+    // },
     xAxis: [
       {
         type: 'value',
@@ -389,6 +397,18 @@ useEffect(() => {
   const handleClickPart = () => {
     const newSelectedState = !part;
     setPart(newSelectedState)
+      // 点击按钮 模拟  点击区域缩放按钮      
+      console.log('chart', chart.getModel())  
+      let dataZoomComponent = chart.getModel().getComponent('dataZoom', 0);
+      console.log('dataZoomComponent', dataZoomComponent)
+      // 切换到区域缩放模式
+      dataZoomComponent.option.zoomLock = false;
+      // 手动开启区域缩放
+      chart.dispatchAction({
+          type: 'takeGlobalCursor',
+          key: 'dataZoomSelect',
+          dataZoomSelectActive: true
+      });
   }
 
   // 曲线播放
