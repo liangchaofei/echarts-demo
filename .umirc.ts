@@ -74,6 +74,11 @@ export default defineConfig({
       path: '/all',
       component: './All',
     },
+    {
+      name: '折线图',
+      path: '/level',
+      component: './Level',
+    },
   ],
   npmClient: 'pnpm',
 });
