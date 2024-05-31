@@ -79,7 +79,11 @@ export default defineConfig({
       path: '/level',
       component: './Level',
     },
+    {
+      name: '颜色柱状图',
+      path: '/bar-color',
+      component: './BarColor',
+    },
   ],
   npmClient: 'pnpm',
 });
-
