@@ -84,6 +84,11 @@ export default defineConfig({
       path: '/bar-color',
       component: './BarColor',
     },
+    {
+      name: '散点图',
+      path: '/scatter',
+      component: './Scatter',
+    },
   ],
   npmClient: 'pnpm',
 });
